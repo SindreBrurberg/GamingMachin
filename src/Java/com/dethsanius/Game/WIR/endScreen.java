@@ -82,14 +82,14 @@ public class endScreen extends Screen {
         }
         Butten.generateButtons(50, 100, 0, 0, Reference.getWidth(screenFactory), Reference.getHeight(screenFactory), 3);
         rects = Butten.buttens;
-        win = new StringTxt(rects[val1], variable1 + " Win the Java.com.dethsanius.Game: " + winner) {
+        win = new StringTxt(rects[val1], variable1 + " Win the game: " + winner) {
             @Override
             public void onUpdate()
             {
 
             }
         };
-        los = new StringTxt(rects[val2], variable2 + " Los the Java.com.dethsanius.Game: " + loser) {
+        los = new StringTxt(rects[val2], variable2 + " Los the game: " + loser) {
             @Override
             public void onUpdate()
             {
