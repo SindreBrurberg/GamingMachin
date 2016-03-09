@@ -12,95 +12,87 @@ import java.awt.*;
 import static Java.com.dethsanius.Game.WIR.lib.refferences.*;
 
 /**
- * Created by Dethsanius on 29.06.2014, project is Games 2D package are Java.com.dethsanius.Game.WIR.
+ * Created by Dethsanius on 29.06.2014, project is Games 2D package are Game
  */
 public class endScreen extends Screen {
     private int total;
     private StringTxt win, los;
     private Rectangle rects[];
     private Butten mainMenu;
-    private String winner, loser, variable1, variable2, felix = "felix", ralph = "ralph", comp = "Computer", you = "You", player1 = "1 Player", player2 = "2 Player";
-    private int val1 = 0, val2 = 1, fullGlases[] = {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3};
+    private String winner, loser, variable1, variable2, felix = "felix",
+            ralph = "ralph", comp = "Computer", you = "You",
+            player1 = "1 Player", player2 = "2 Player";
+    private int val1 = 0, val2 = 1, fullGlases[] = {3, 3, 3, 3, 3, 3, 3, 3, 3,
+            3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+            3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+            3, 3, 3, 3, 3, 3, 3};
 
-    public endScreen(ScreenFactory screenFactory, int total)
-    {
+    public endScreen(ScreenFactory screenFactory, int total) {
         super(screenFactory);
         this.total = total;
     }
 
     @Override
-    public void onCreate()
-    {
-        if (total < 150)
-        {
+    public void onCreate() {
+        if (total < 150) {
             winner = ralph;
             loser = felix;
-            if (ralphComp && !felixComp)
-            {
+            if (ralphComp && !felixComp) {
                 variable1 = comp;
                 variable2 = you;
-            } else if (!ralphComp)
-            {
+            } else if (!ralphComp) {
                 variable1 = you;
                 variable2 = comp;
-            } else
-            {
+            } else {
                 variable1 = comp;
                 variable2 = comp;
             }
-        } else
-        {
+        } else {
             winner = felix;
             loser = ralph;
-            if (ralphComp && !felixComp)
-            {
+            if (ralphComp && !felixComp) {
                 variable1 = you;
                 variable2 = comp;
-            } else if (!ralphComp)
-            {
+            } else if (!ralphComp) {
                 variable1 = comp;
                 variable2 = you;
-            } else
-            {
+            } else {
                 variable1 = comp;
                 variable2 = comp;
             }
         }
-        if (!ralphComp && !felixComp)
-        {
-            if (winner.equals(ralph))
-            {
+        if (!ralphComp && !felixComp) {
+            if (winner.equals(ralph)) {
                 variable1 = player1;
                 variable2 = player2;
-            } else
-            {
+            } else {
                 variable1 = player2;
                 variable2 = player1;
             }
-        } else
-        {
+        } else {
+            //test
+            System.out.println("Empty else got fired off inn WIR\\endScreen.java");
         }
-        Butten.generateButtons(50, 100, 0, 0, Reference.getWidth(screenFactory), Reference.getHeight(screenFactory), 3);
+        Butten.generateButtons(50, 100, 0, 0, Reference.getWidth(screenFactory),
+                                Reference.getHeight(screenFactory), 3);
         rects = Butten.buttens;
         win = new StringTxt(rects[val1], variable1 + " Win the game: " + winner) {
             @Override
-            public void onUpdate()
-            {
+            public void onUpdate() {
 
             }
         };
         los = new StringTxt(rects[val2], variable2 + " Los the game: " + loser) {
             @Override
-            public void onUpdate()
-            {
+            public void onUpdate() {
 
             }
         };
         mainMenu = new Butten(rects[2], "Main Menu", screenFactory) {
             @Override
-            public void isPushed()
-            {
-                Screen.getScreenFactory().getGame().setWindowSize(Reference.winX, Reference.winY);
+            public void isPushed() {
+                Screen.getScreenFactory().getGame().setWindowSize(Reference.winX,
+                                                                  Reference.winY);
                 getScreenFactory().showScreen(new mainScrean(getScreenFactory()));
             }
         };
@@ -131,14 +123,12 @@ public class endScreen extends Screen {
     }
 
     @Override
-    public void onUpdate()
-    {
+    public void onUpdate() {
         mainMenu.update();
     }
 
     @Override
-    public void onDraw(Graphics2D g2d)
-    {
+    public void onDraw(Graphics2D g2d) {
         win.draw(g2d);
         los.draw(g2d);
         mainMenu.draw(g2d);
